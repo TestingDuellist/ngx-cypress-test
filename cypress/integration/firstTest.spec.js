@@ -1,3 +1,4 @@
+const { Input } = require("@angular/core")
 
 
 describe('example to-do app', () => {
@@ -42,19 +43,19 @@ describe('example to-do app', () => {
             })
         })
     })
-     it.only('invoke command', () => {
+    it('invoke command', () => {
 
         cy.visit('/')
         cy.contains('Forms').click()
         cy.contains('Form Layouts').click()
 
-    //     //1
-    //     cy.get('[for="inputEmail1"]').should('contain', 'Email address')
+        //     //1
+        //     cy.get('[for="inputEmail1"]').should('contain', 'Email address')
 
 
-    //     //2
-    //     cy.get('[for="inputEmail1"]').then(label => {
-    //         expect(label.text()).to.equal('Email address')
+        //     //2
+        //     cy.get('[for="inputEmail1"]').then(label => {
+        //         expect(label.text()).to.equal('Email address')
 
         // })
         //3 
@@ -66,13 +67,32 @@ describe('example to-do app', () => {
                 .find('nb-checkbox')
                 .click()
                 .find('.custom-checkbox')
-                .invoke('attr','class')
+                .invoke('attr', 'class')
                 .should('contain', 'checked')
-                .then(classvalue =>{ expect(classvalue).to.contain("checked")
+                .then(classvalue => {
+                    expect(classvalue).to.contain("checked")
 
 
                 })
         })
 
-   })
+    })
+
+    it.only('Date picker', () => {
+
+        cy.visit('/')
+        cy.contains('Forms').click()
+        cy.contains('Datepicker').click()
+
+
+        cy.contains('nb-card', 'Common Datepicker').find("input").then(input => {
+            cy.wrap(input).click()
+            cy.get('nb-calendar-day-picker').contains("18").click()
+            cy.wrap(input).invoke('prop', 'value')
+            .then(input => {
+                expect(input).to.contain("May 18, 2022")
+
+        })
+    })
+})
 })
