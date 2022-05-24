@@ -35,7 +35,7 @@ describe('example to-do app', () => {
 
             cy.contains('nb-card', 'Basic form').then(secondForm => {
                 const passwordsecondtext = secondForm.find('[for="exampleInputPassword1"]').text()
-                expect(passwordLabelFirst).to.equal(passwordsecondtext)123
+                expect(passwordLabelFirst).to.equal(passwordsecondtext) hi
 
             })
         })
